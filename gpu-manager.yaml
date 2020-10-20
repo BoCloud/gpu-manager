@@ -24,7 +24,7 @@ spec:
         # See https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/
         - key: CriticalAddonsOnly
           operator: Exists
-        - key: tencent.com/vcuda-core
+        - key: bocloud.com/vcuda-core
           operator: Exists
           effect: NoSchedule
       # Mark this pod as a critical add-on; when enabled, the critical add-on
@@ -37,8 +37,8 @@ spec:
         nvidia-device-enable: enable
       hostPID: true
       containers:
-        - image: tkestack/gpu-manager:1.0.3
-          imagePullPolicy: Always
+        - image: bocloud.com/gpu-manager:1.1.0
+          imagePullPolicy: Never
           name: gpu-manager
           securityContext:
             privileged: true
@@ -65,13 +65,20 @@ spec:
               readOnly: true
           env:
             - name: LOG_LEVEL
-              value: "4"
+              value: "1"
             - name: EXTRA_FLAGS
-              value: "--logtostderr=false"
+              value: "--logtostderr=false --cgroup-driver=systemd"
             - name: NODE_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+          resources:
+            requests:
+              memory: 64Mi
+              cpu: 200m
+            limits:
+              memory: 128Mi
+              cpu: 400m
       volumes:
         - name: device-plugin
           hostPath:
@@ -88,7 +95,7 @@ spec:
         - name: log
           hostPath:
             type: DirectoryOrCreate
-            path: /etc/gpu-manager/log
+            path: /var/log/gpu-manager
         - name: checkpoint
           hostPath:
             type: DirectoryOrCreate

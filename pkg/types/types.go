@@ -18,13 +18,13 @@
 package types
 
 const (
-	VDeviceAnnotation       = "tencent.com/vcuda-device"
-	VCoreAnnotation         = "tencent.com/vcuda-core"
-	VCoreLimitAnnotation    = "tencent.com/vcuda-core-limit"
-	VMemoryAnnotation       = "tencent.com/vcuda-memory"
-	PredicateTimeAnnotation = "tencent.com/predicate-time"
-	PredicateGPUIndexPrefix = "tencent.com/predicate-gpu-idx-"
-	GPUAssigned             = "tencent.com/gpu-assigned"
+	VDeviceAnnotation       = "bocloud.com/vcuda-device"
+	VCoreAnnotation         = "bocloud.com/vcuda-core"
+	VCoreLimitAnnotation    = "bocloud.com/vcuda-core-limit"
+	VMemoryAnnotation       = "bocloud.com/vcuda-memory"
+	PredicateTimeAnnotation = "bocloud.com/predicate-time"
+	PredicateGPUIndexPrefix = "bocloud.com/predicate-gpu-idx-"
+	GPUAssigned             = "bocloud.com/gpu-assigned"
 	ClusterNameAnnotation   = "clusterName"
 
 	VCUDA_MOUNTPOINT = "/etc/vcuda"
