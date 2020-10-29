@@ -7,10 +7,11 @@ metadata:
     prometheus.io/scrape: "true"
   labels:
     kubernetes.io/cluster-service: "true"
+    name: gpu-manager-metric
 spec:
   clusterIP: None
   ports:
-    - name: metrics
+    - name: metric
       port: 5678
       protocol: TCP
       targetPort: 5678
