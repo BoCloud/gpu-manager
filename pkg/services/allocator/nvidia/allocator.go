@@ -41,7 +41,7 @@ import (
 	"tkestack.io/gpu-manager/pkg/utils"
 
 	"golang.org/x/net/context"
-	"k8s.io/api/core/v1"
+	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/fields"
 	"k8s.io/apimachinery/pkg/labels"
@@ -446,6 +446,10 @@ func (ta *NvidiaTopoAllocator) allocateOne(pod *v1.Pod, container *v1.Container,
 				predicateNode := ta.tree.Query(devStr)
 				if predicateNode == nil {
 					return nil, fmt.Errorf("failed to get predicate node %s", devStr)
+				}
+
+				if shareMode {
+					nodes[0] = predicateNode
 				}
 
 				// check if we choose the same node as scheduler
