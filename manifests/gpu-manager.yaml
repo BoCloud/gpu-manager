@@ -37,7 +37,7 @@ spec:
         nvidia-device-enable: enable
       hostPID: true
       containers:
-        - image: bocloud.com/gpu-manager:1.1.0
+        - image: bocloud.com/gpu-manager:1.1.1
           imagePullPolicy: Never
           name: gpu-manager
           securityContext:
