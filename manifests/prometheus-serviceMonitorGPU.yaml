@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    name: gpu-manager-metric
+  name: gpu-manager-metric
+  namespace: kube-system
+spec:
+  endpoints:
+  - interval: 30s
+    path: /metric
+    port: metric
+    scheme: http
+  selector:
+    matchLabels:
+      name: gpu-manager-metric
